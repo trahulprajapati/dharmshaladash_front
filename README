@@ -1,0 +1,7 @@
+Prajapati Dharmashala Frontend
+
+Git repo - https://github.com/trahulprajapati/dharmshaladash_front.git
+
+Prerequisites
+System Requiement - 4GB RAM, 500 HDD
+Software Requiement - Node js, npm install -g @vue/cli, npm run serve, npm install --save axios
