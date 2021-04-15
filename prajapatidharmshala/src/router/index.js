@@ -54,7 +54,8 @@ const Login = () => import('@/views/pages/Login')
 //const Register = () => import('@/views/pages/Register')
 
 // Views - Notifications
-const Register = () => import('@/views/dharmashala/Register')
+const Register = () => import('@/views/dharmashala/user/Register')
+const UserList = () => import('@/views/dharmashala/user/List')
 
 // Users
 const Users = () => import('@/views/users/Users')
@@ -310,16 +311,21 @@ function configRoutes () {
         },
         {
           path: 'dharmashala',
-          redirect: '/dharmashala/register',
+          redirect: '/dharmashala/user/register',
           name: 'Dharmashala',
           component: {
             render (c) { return c('router-view') }
           },
           children: [
             {
-              path: 'register',
+              path: '/dharmashala/user/register',
               name: 'Register',
               component: Register
+            },
+            {
+              path: '/dharmashala/user/list',
+              name: 'UserList',
+              component: UserList
             }
           ]
         },

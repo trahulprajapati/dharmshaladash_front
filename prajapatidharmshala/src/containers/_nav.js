@@ -28,7 +28,11 @@ export default [
           },
           {
             name: 'इवेंट लिस्ट',
-            to: '/notifications/modals'
+            to: '/base/formss'
+          },
+          {
+            name: 'यूजर लिस्ट',
+            to: '/dharmashala/user/list'
           }
         ]
       },
@@ -48,7 +52,7 @@ export default [
           },
           {
             name: 'यूजर ऐड',
-            to: '/dharmashala/register'
+            to: '/dharmashala/user/register'
           },
         ]
       },
