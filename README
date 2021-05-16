@@ -5,3 +5,11 @@ Git repo - https://github.com/trahulprajapati/dharmshaladash_front.git
 Prerequisites
 System Requiement - 4GB RAM, 500 HDD
 Software Requiement - Node js, npm install -g @vue/cli, npm run serve, npm install --save axios
+
+
+
+
+############################### changelog ##########################
+5/13/2021 -- list search, net prev done, next is to work on update user by modal, click on edit/delete icon and 
+modal shouold populated adn update the info
+

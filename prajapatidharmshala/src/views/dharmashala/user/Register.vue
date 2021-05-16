@@ -3,7 +3,7 @@
     <div class="container">
         <div class="col-sm-10 bg-white text-dark border">
           <div class="row frow header border">
-              <h4><strong class="col-sm-9"> सदस्य जोड़ें </strong></h4>
+              <h5><strong class="col-sm-9"> सदस्य जोड़ें </strong></h5>
           </div>
           <br>
           <div class="row frow d-flex justify-content-center">
@@ -72,7 +72,7 @@
                     v-model="occupation"/>
                 </div>
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-3 col-form-label" for="email">ईमेल</label>
+                    <label class="col-sm-3 col-form-label" for="email">ई-मेल</label>
                     <input type="text" class="form-control col-sm-9" name="email" id="email"
                     v-model="email"/>
                     <span class="error" v-if="errors.email"> {{errors.email}}</span>
@@ -84,14 +84,18 @@
                     <textarea type="text" class="form-control col-sm-10" name="address" id="address"
                     v-model="address"/>
                 </div>
-                 <!-- <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-2 col-form-label"  for="role">पद</label>
+                 <div class="form-row form-inline col-sm-5">
+                    <label class="col-sm-3 col-form-label"  for="role">पद</label>
                     <select class="form-control col-sm-9" id="role" v-model="role">
-                      <option value="male">पुरुष</option>
-                      <option value="female">महिला</option>
+                      <option value="male">अध्यक्ष</option>
+                      <option value="female">उपाध्यक्ष</option>
+                      <option value="other">सचिव</option>
+                      <option value="male">उप-सचिव</option>
+                      <option value="female">कोषाध्यक्ष</option>
+                      <option value="other">समिति सदस्य</option>
                       <option value="other">अन्य</option>
                     </select>
-                </div>   -->
+                </div>  
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">

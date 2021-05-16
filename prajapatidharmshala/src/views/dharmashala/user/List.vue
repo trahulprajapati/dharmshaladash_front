@@ -1,111 +1,76 @@
-<template>
-<CRow>
-    <div class="container">
-        <div class="col-sm-12 bg-white text-dark border">
-          <div class="row frow header border">
-              <h4><strong class="col-sm-12">  सदस्य सूची </strong></h4>
+<template>          
+  <!-- <CRow> -->
+      <div class="container">
+          <div class="col-sm-12 bg-white text-dark border">
+            <div class="row frow header border">
+                <h5><strong class="col-sm-12">  सदस्य सूची </strong></h5>
+            </div>
+            <div class="row frow d-flex justify-content-center">
+              <span class="error" v-if="errors"> {{errors.error}}</span>
+              <DTable
+                    v-if="users"
+                    :theData="users"
+                    :config="config"
+                    :style="{height: '600px'}"
+                />
+            </div>
           </div>
-          <br>
-          <div class="row frow d-flex justify-content-center">
-            
-          </div>
-        </div>
-    </div>
-</CRow>
-
+      </div>
+  <!-- </CRow> -->
 </template>
 
 <script>
-//import { api } from  '../../../'
 import { api } from '../../../api.js';
+import DTable from '../base/Table.vue'
+const users = [];
 export default {
-  name: 'Register',
+  name: 'List',
+  components: {
+    DTable,
+  },
   data() {
     return {
+      users,
       errors: [],
-      first_name: null,
-      last_name: null,
-      gender: null,
-      father: null,
-      age: null,
-      village: null,
-      mobile: null,
-      alt_mobile: null,
-      occupation: null,
-      email: null,
-      address: null,
+      config: [],
     }
   },
   created() {
-    //alert("hihih");
     api.get('/prajapatidharmashala/api/account/list/').then(res => {
-      //alert(res.data);
+      //alert (JSON.stringify(res.data));
+      this.create_table(res.data)
     }).catch( e => {
-      //alert(e)
+      alert (e);
+      errors['error'] = e;
     })
   },
-  watch: {
-    first_name(value) {
-      this.first_name = value;
-      this.require_check('first_name', value, 'Name');
-    },
-    last_name(value) {
-      this.last_name = value;
-      this.require_check('last_name', value, 'Surname');
-    },
-    gender(value) {
-      this.gender = value;
-      this.require_check('gender', value, 'Gender');
-    },
-    father(value) {
-      this.father = value;
-      this.require_check('father', value, 'Father');
-    },
-    mobile(value) {
-      this.mobile = value;
-      this.require_check('mobile', value, 'Mobile');
 
-      //mobile number validation
-      var phoneno = /^\d{10}$/;
-      if (value.match(phoneno)) {
-        this.errors['mobile'] = '';
-      } else {
-        this.errors['mobile'] = 'Mobile Number is Invalid';
-      }
-    },
-    village(value) {
-      this.village = value;
-      this.require_check('village', value, 'Village');
-    },
-    // email (value) {
-    //   var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-    //   if(value.match(mailformat)) {
-    //     this.errors['email'] = '';
-    //   } else {
-    //     this.errors['email'] = 'Invalid Email';
-    //   }
-    // }
-
-  },
-  cumputed:{
-    // canSubmit () {
-    //   alert('sdd')
-    //   //if (Object.keys(this.errors).length > 0) {}
-    //   return Object.keys(this.errors).length > 0;
-    // }
-  },
   methods: {
-    require_check(prop, val, p) {
-      if (!val) {
-        this.errors[prop] = p+' is required';
-      } else {
-        this.errors[prop] = '';
-      }
-    },
-    canSubmit () {
-      alert('sdd')
-      //if (Object.keys(this.errors).length > 0) {}
-      return Object.keys(this.errors).length > 0;
+    create_table(val) {
+      var arr = [];
+      var i = 0;
+      val.forEach((item) => {
+        if (item.profile !== null) {
+          var obj = {};
+          obj.mobile = item.mobile;
+          obj.name = item.profile.first_name+' '+ item.profile.last_name;
+          obj.email = item.email;
+          obj.village = item.profile.village;
+          obj.father = item.profile.father;
+          obj.id = '';
+          arr.push(obj);
+        }
+      })
+      this.users = arr;
+      this.config = [
+        {key: 'name', title: 'नाम'},
+        {key: 'father', title: 'पिता'},
+        {key: 'mobile', title: 'मोबाइल'},
+        {key: 'village', title: 'गाँव'},
+        {key: 'id', title: 'एक्शन'}
+      ];
+
+      console.log(JSON.stringify(arr))
     }
   }
 }
@@ -115,8 +80,6 @@ export default {
 .header {
   padding: 60px;
   text-align: center;
-  background: rgb(99, 110, 117);
-  color: white;
   font-size: 30px;
 }
 
