@@ -9,7 +9,24 @@ Software Requiement - Node js, npm install -g @vue/cli, npm run serve, npm insta
 
 
 
-############################### changelog ##########################
+############################################ changelog #####################################################
 5/13/2021 -- list search, net prev done, next is to work on update user by modal, click on edit/delete icon and 
 modal shouold populated adn update the info
 
+5/16/2021 - Modal design is completed, created Modal.vue for editmodal now. Next is to create update form for 
+edit and delete
+
+5/25/2021 -- update user form modal design done, next to populate api data in update form
+
+5/27/2021 -- update form generating api data, next to make register and update form fullly functional 
+working , need to be work on can_submit, befor that need to be working on signup for token
+
+5/28/2021 -- rNd on login/logout. use this to implement login logout, next auth implementation.
+ref - https://github.com/gabbyprecious/vue-blog/tree/master/src , 
+    https://www.smashingmagazine.com/2020/10/authentication-in-vue-js/
+    login page design completed and state, mutation and auth module created to handle the login 
+    dropdown and login page. next is to implement login api for the same, 
+    action, state, motation, and getters created for login api in auth module
+
+5/29/2020 -- git commit
+    

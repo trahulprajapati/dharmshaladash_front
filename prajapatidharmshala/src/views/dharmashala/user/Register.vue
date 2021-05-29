@@ -99,7 +99,7 @@
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                   <button type="submit" :class="['btn btn-primary mb-2 mr-4', (canSubmit == true ? 'disable' : '')]">जोड़े</button>
+                   <button type="submit" :class="['btn btn-primary mb-2 mr-4', (canSubmit == true ? 'disable' : '')]">सम्पादित करें</button>
                    <button type="submit" class="btn btn-primary mb-2">रिसेट</button>
                 </div>
               </div>

@@ -57,7 +57,7 @@ export default {
           obj.email = item.email;
           obj.village = item.profile.village;
           obj.father = item.profile.father;
-          obj.id = '';
+          obj.id = item.mobile;
           arr.push(obj);
         }
       })

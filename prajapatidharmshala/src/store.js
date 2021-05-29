@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
+import auth from './store_modules/auth'
+
 Vue.use(Vuex)
 
 const state = {
@@ -23,5 +26,9 @@ const mutations = {
 
 export default new Vuex.Store({
   state,
-  mutations
+  mutations,
+  modules : {
+    auth
+  },
+  plugins: [createPersistedState()],
 })

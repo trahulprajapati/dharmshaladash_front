@@ -1,78 +1,60 @@
 <template>
-  <CDropdown
-    inNav
-    class="c-header-nav-items"
-    placement="bottom-end"
-    add-menu-classes="pt-0"
-  >
-    <template #toggler>
-      <CHeaderNavLink>
-        <div class="c-avatar">
-          <img
-            src="img/avatars/LoginIcons.jpg"
-            class="c-avatar-img "
-          />
-        </div>
-      </CHeaderNavLink>
-    </template>
-    <!-- <CDropdownHeader tag="div" class="text-center" color="light">
-      <strong>Account</strong>
-    </CDropdownHeader> -->
-    <!-- <CDropdownItem>
-      <CIcon name="cil-bell"/> Updates
-      <CBadge color="info" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-envelope-open" /> Messages
-      <CBadge color="success" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-task" /> Tasks
-      <CBadge color="danger" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-comment-square" /> Comments
-      <CBadge color="warning" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem> -->
-    <CDropdownHeader
-      tag="div"
-      class="text-center"
-      color="light"
+    <CDropdown
+      inNav
+      class="c-header-nav-items"
+      placement="bottom-end"
+      add-menu-classes="pt-0"
     >
-      <strong>Settings</strong>
-    </CDropdownHeader>
-    <CDropdownItem>
-      <CIcon name="cil-user" /> Profile
-    </CDropdownItem>
-    <CDropdownItem>
-      <CIcon name="cil-settings" /> Settings
-    </CDropdownItem>
-    <!-- <CDropdownItem>
-      <CIcon name="cil-dollar" /> Payments
-      <CBadge color="secondary" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem> -->
-    <!-- <CDropdownItem>
-      <CIcon name="cil-file" /> Projects
-      <CBadge color="primary" class="mfs-auto">{{ itemsCount }}</CBadge>
-    </CDropdownItem> -->
-    <CDropdownDivider/>
-    <!-- <CDropdownItem>
-      <CIcon name="cil-shield-alt" /> Lock Account
-    </CDropdownItem> -->
-    <CDropdownItem>
-      <CIcon name="cil-lock-locked" /> Login
-    </CDropdownItem>
-  </CDropdown>
+      <template #toggler>
+        <CHeaderNavLink>
+          <div class="c-avatar">
+            <img
+              src="img/avatars/LoginIcons.jpg"
+              class="c-avatar-img "
+            />
+          </div>
+        </CHeaderNavLink>
+      </template>
+      <CDropdownHeader
+        tag="div"
+        class="text-center"
+        color="light"
+      >
+        <strong>अकाउंट </strong>
+      </CDropdownHeader>
+      <span v-if="isLoggedIn">
+        <CDropdownItem>
+          <CIcon name="cil-user" /> <router-link to="/profile">प्रोफाइल  </router-link>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon name="cil-lock-locked" @click="logout"/>  लॉगआउट
+        </CDropdownItem>
+      </span>
+      <span v-else>
+          <CDropdownItem>
+            <CIcon name="cil-lock-locked"/> <router-link to="/login">लॉगिन  </router-link>
+          </CDropdownItem>
+      </span>
+    </CDropdown>
 </template>
 
 <script>
+import Modal from '../views/dharmashala/base/Modal'
+import {api} from '../api'
+
 export default {
   name: 'TheHeaderDropdownAccnt',
-  data () {
-    return { 
-      itemsCount: 42
-    }
-  }
+  computed: {
+    isLoggedIn: function() {
+      return this.$store.getters.isAuthenticated;
+    },
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch("LogOut");
+      this.$router.push("/login");
+    },
+  },
 }
 </script>
 
@@ -80,4 +62,5 @@ export default {
   .c-icon {
     margin-right: 0.3rem;
   }
+
 </style>
