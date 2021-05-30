@@ -56,9 +56,10 @@
 
         <template v-slot:body>
           <div class="row justify-content-center fdiv">
-            <form class="col-12">
+            <form class="col-12" @submit.prevent="submit">
+              <span class="error" v-if="showError">  {{errors.error}}</span>
               <div class="form-group row">
-                 <span class="error" v-if="errors.error"> {{errors.error}}</span>
+                 <!-- <span class="error" v-if="errors.error"> {{errors.error}}</span> -->
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="first_name" required>नाम *</label>
                     <input type="text" class="form-control col-sm-9" name="first_name" id="first_name"
@@ -106,7 +107,7 @@
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="mobile">मोबाइल *</label>
                     <input type="text" class="form-control col-sm-9" name="mobile" id="mobile"
-                    v-model="mobile" required/>
+                    v-model="mobile" readonly required/>
                     <span class="error" v-if="errors.mobile"> {{errors.mobile}}</span>
                 </div>
                 <div class="form-row form-inline col-sm-5">
@@ -149,7 +150,7 @@
               </div> <br>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                   <button type="submit" :class="['btn btn-primary mb-2 mr-4', (canSubmit == true ? 'disable' : '')]">सम्पादित करें</button>
+                   <button type="submit" :class="['btn btn-primary mb-2 mr-4'] " :disabled="isDisabled">सम्पादित करें</button>
                    <button type="button" class="btn btn-primary mb-2"  @click="closeModal()">बंद करें </button>
                 </div>
               </div>
@@ -194,6 +195,7 @@ export default {
       currentSort: 'name',
       currentSortDir: 'asc',
       isModalVisible: false,
+      showError:false,
       errors: [],
       first_name: null,
       last_name: null,
@@ -215,32 +217,24 @@ export default {
       this.currentPage = 1;
     },
     first_name(value) {
+      //showError = false
       this.first_name = value;
       this.require_check('first_name', value, 'Name');
     },
     last_name(value) {
+      //showError = false
       this.last_name = value;
       this.require_check('last_name', value, 'Surname');
     },
     gender(value) {
+      //showError = false
       this.gender = value;
       this.require_check('gender', value, 'Gender');
     },
     father(value) {
+      //showError = false
       this.father = value;
       this.require_check('father', value, 'Father');
-    },
-    mobile(value) {
-      this.mobile = value;
-      this.require_check('mobile', value, 'Mobile');
-
-      //mobile number validation
-      var phoneno = /^\d{10}$/;
-      if (value.match(phoneno)) {
-        this.errors['mobile'] = '';
-      } else {
-        this.errors['mobile'] = 'Mobile Number is Invalid';
-      }
     },
     village(value) {
       this.village = value;
@@ -248,6 +242,22 @@ export default {
     },
   },
   computed: {
+    isDisabled() {
+      if (this.first_name == undefined || this.father == undefined 
+      || this.first_name == '' || this.father == ''
+      || this.last_name == undefined || this.last_name == ''
+      || this.village == undefined || this.village == ''
+      || this.mobile == undefined || this.mobile == ''
+      || this.errors.length > 0 ) {
+        return true
+      } else {
+        return false
+      }
+    },
+    isLoggedIn: function() {
+      //tkn = this.$store.getters.isAuthenticated
+      return this.$store.getters.isAuthenticated;
+    },
     filteredData() {
       return this.theData.filter(c => {
         if(this.filter == '') return true;
@@ -293,6 +303,7 @@ export default {
       this.isModalVisible = true;
     },
     closeModal() {
+      //this.errors['error'] = ''
       this.isModalVisible = false;
     },
 
@@ -317,11 +328,40 @@ export default {
         this.errors[prop] = '';
       }
     },
-    canSubmit () {
-      alert('sdd')
-      //if (Object.keys(this.errors).length > 0) {}
-      return Object.keys(this.errors).length > 0;
-    }
+    async submit() {
+      //alert('dwe');
+      const user = {
+        mobile: this.mobile,
+        email: this.email,
+        profile: {
+          first_name: this.mobile,
+          last_name: this.last_name,
+          village: this.village,
+          father: this.father,
+          alt_mobile: this.alt_mobile,
+          occupation: this.occupation,
+          gender: this.gender,
+          address: this.address,
+          age: this.age
+        }
+      }
+      //let o =  this.$store.getters.isAuthenticated;
+      let tok = localStorage.getItem('token')
+      //console.log(JSON.stringify(user) + '----' + tok);
+      await api.patch("prajapatidharmashala/api/account/update/"+this.mobile, user,
+        {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+tok
+        },}
+      ).then(res => {
+          this.$router.push("/dharmashala/user/list");
+      }).catch(err => {
+        alert(err)
+        this.showError = true
+        this.errors['error'] = err
+      })
+    },
   }
 }
 

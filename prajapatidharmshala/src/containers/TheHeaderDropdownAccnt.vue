@@ -27,7 +27,7 @@
           <CIcon name="cil-user" /> <router-link to="/profile">प्रोफाइल  </router-link>
         </CDropdownItem>
         <CDropdownItem>
-          <CIcon name="cil-lock-locked" @click="logout"/>  लॉगआउट
+          <CIcon name="cil-lock-locked"/> <a @click="logout()"> लॉगआउट </a>
         </CDropdownItem>
       </span>
       <span v-else>
@@ -46,6 +46,7 @@ export default {
   name: 'TheHeaderDropdownAccnt',
   computed: {
     isLoggedIn: function() {
+      //tkn = this.$store.getters.isAuthenticated
       return this.$store.getters.isAuthenticated;
     },
   },

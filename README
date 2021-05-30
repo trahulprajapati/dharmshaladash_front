@@ -28,5 +28,10 @@ ref - https://github.com/gabbyprecious/vue-blog/tree/master/src ,
     dropdown and login page. next is to implement login api for the same, 
     action, state, motation, and getters created for login api in auth module
 
-5/29/2020 -- git commit
-    
+5/29/2021 -- git commit
+        login is working with positive and nagitvie testing
+        in middle of update user , api call written but getting error , checking on postmanster
+        need to modiify api -
+        https://medium.com/django-rest/django-rest-framework-change-password-and-update-profile-1db0c144c0a3
+
+5/30/2021 - git commit , update user is working, 
