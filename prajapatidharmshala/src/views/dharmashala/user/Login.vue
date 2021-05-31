@@ -11,32 +11,32 @@
       <!-- body -->
       <template v-slot:body>
           <div class="row  fdiv">
-
-            <form class="col-9 lform"  @submit.prevent="submit">
+            <form class="col-6 lform"   @submit.prevent="submit">
               <img src="../../../../public/img/avatars/loginlogo1.jpeg" class="imgbtn" style="width:180px;height:150px;" >
-              <div class="form-group row">
+              <div class="form-group ">
                  <!-- <span class="error" v-if="errors.error"> {{errors.error}}</span> -->
-                <div class="form-row form-inline col-sm-5">
+                <div class="form-row form-inline col-sm-10">
                     <label class="col-sm-3 col-form-label"  for="mobile" required>मोबाइल*</label>
                     <input type="text" class="form-control col-sm-9" name="mobile" id="mobile"
                     v-model="mobile" required/>
-                    <span class="error" v-if="errors.mobile"> {{errors.mobile}}</span>
+                    <span class="error subtn" v-if="errors.mobile"> {{errors.mobile}}</span>
                 </div>
               </div>
-              <div class="form-group row">
-                <div class="form-row form-inline col-sm-5">
+              <div class="form-group ">
+                <div class="form-row form-inline col-sm-10">
                     <label class="col-sm-3 col-form-label" for="password">पासवर्ड*</label>
                     <input type="text" class="form-control col-sm-9" name="password" id="password"
                     v-model="password" required/>
                     <span class="error" v-if="errors.password"> {{errors.password}}</span>
                 </div>
-                <p v-if="errors.password" id="error">Username or Password is incorrect</p>
+                <!-- <p v-if="errors.password" id="error">Username or Password is incorrect</p> -->
                 <span class="error" v-if="showError"> यूजरनाम या पासवर्ड गलत है  {{errors.error}}</span>
               </div> 
-              <div class="form-group row fdiv">
-                <div class="form-row form-inline col-sm-7">
-                   <button type="submit" :class="['btn btn-primary mb-2 mr-4']" :disabled="isDisabled">लॉगिन</button>
-                   <button type="button" class="btn btn-primary mb-2"  @click="closeModal()">बंद करें </button>
+              <div class="form-group fdiv">
+                <!-- <span class="error" v-if="showError"> यूजरनाम या पासवर्ड गलत है  {{errors.error}}</span> -->
+                <div class="form-row form-inline col-sm-10 subtn">
+                   <button type="submit" :class="['btn btn-primary mb-3 mr-4 col-sm-10']" :disabled="isDisabled">लॉगिन</button>
+                   <!-- <button type="button" class="btn btn-primary mb-2"  @click="closeModal()">बंद करें </button> -->
                 </div>
               </div>
             </form>
@@ -161,8 +161,18 @@ export default({
   /* margin: 15px; */
 }
 .lform {
-  margin: 5px 70px 5px 250px;
+  /* margin: 5px 70px 5px 250px; */
+  margin: 5px 50px 5px 200px;
+  text-align: center;
+  /* padding: 2%; */
+  border: solid;
+  border-width:1px;
+  border-color: rgb(175, 172, 172);
   /*   */
+}
+
+.subtn {
+  margin: 2px 5px 10px 55px;
 }
 
 .imgbtn {

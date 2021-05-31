@@ -1,15 +1,20 @@
 <template>
-<CRow>
-    <div class="container">
-        <div class="col-sm-10 bg-white text-dark border">
-          <div class="row frow header border">
-              <h5><strong class="col-sm-9"> सदस्य जोड़ें </strong></h5>
-          </div>
-          <br>
-          <div class="row frow d-flex justify-content-center">
+  <div> 
+    <Modal
+        v-show="isModalVisible"
+        @close="closeModal"
+    >
+      <!-- header -->
+      <template v-slot:header>
+          प्रोफाइल - {{ first_name }} 
+      </template>
+      <!-- body -->
+      <template v-slot:body>
+          <div class="row justify-content-center fdiv">
             <form class="col-12" @submit.prevent="submit">
               <span class="error" v-if="showError">  {{errors.error}}</span>
               <div class="form-group row">
+                 <!-- <span class="error" v-if="errors.error"> {{errors.error}}</span> -->
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="first_name" required>नाम *</label>
                     <input type="text" class="form-control col-sm-9" name="first_name" id="first_name"
@@ -26,10 +31,10 @@
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="gender">लिंग *</label>
-                    <select class="form-control col-sm-9" id="gender" v-model="gender">
+                    <select class="form-control col-sm-9" id="gender" v-model="gender" required>
                       <option value="MALE">पुरुष</option>
                       <option value="FEMALE">महिला</option>
-                      <option value="other">अन्य</option>
+                      <option value="OTHER">अन्य</option>
                     </select>
                     <span class="error" v-if="errors.gender"> {{errors.gender}}</span>
                 </div>
@@ -57,7 +62,7 @@
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="mobile">मोबाइल *</label>
                     <input type="text" class="form-control col-sm-9" name="mobile" id="mobile"
-                    v-model="mobile" required/>
+                    v-model="mobile" readonly required/>
                     <span class="error" v-if="errors.mobile"> {{errors.mobile}}</span>
                 </div>
                 <div class="form-row form-inline col-sm-5">
@@ -81,12 +86,11 @@
               </div>
                <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-2 col-form-label"  for="address">पता*</label>
-                    <textarea type="text" class="form-control col-sm-9" name="address" id="address"
+                    <label class="col-sm-2 col-form-label"  for="address">पता</label>
+                    <textarea type="text" class="form-control col-sm-10" name="address" id="address"
                     v-model="address"/>
-                    <span class="error" v-if="errors.address"> {{errors.address}}</span>
                 </div>
-                 <div class="form-row form-inline col-sm-5">
+                 <!-- <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label"  for="role">पद</label>
                     <select class="form-control col-sm-9" id="role" v-model="role">
                       <option value="male">अध्यक्ष</option>
@@ -97,33 +101,40 @@
                       <option value="other">समिति सदस्य</option>
                       <option value="other">अन्य</option>
                     </select>
-                </div>  
-              </div>
+                </div>   -->
+              </div> <br>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                   <button type="submit" :class="['btn btn-primary mb-2 mr-4']" :disabled="isDisabled">सम्पादित करें</button>
-                   <button type="submit" class="btn btn-primary mb-2" @click="reset_form">रिसेट</button>
+                   <button type="submit" :class="['btn btn-primary mb-2 mr-4'] " :disabled="isDisabled">सम्पादित करें</button>
+                   <button type="button" class="btn btn-primary mb-2"  @click="closeModal()">बंद करें </button>
                 </div>
               </div>
             </form>
           </div>
-        </div>
-    </div>
-</CRow>
+        </template>
 
+      <!-- footer -->
+      <!-- <template v-slot:footer>
+      </template> -->
+    </Modal>
+  </div>
 </template>
 
 <script>
-//import { api } from  '../../../'
+import Modal from '../base/Modal'
 import { api } from '../../../api.js';
-const users = {}
-const email = {}
-export default {
-  name: 'Register',
+
+export default({
+    name: 'Profile',
+      components: {
+    Modal
+  },
   data() {
     return {
       errors: [],
+      isModalVisible: true,
       showError:false,
+      errors: [],
       first_name: null,
       last_name: null,
       gender: null,
@@ -135,128 +146,39 @@ export default {
       occupation: null,
       email: null,
       address: null,
-      role: null
+      role: null,
     }
   },
   created() {
-    //alert("hihih");
-    api.get('/prajapatidharmashala/api/account/list/').then(res => {
-      this.get_users(res.data);
+    let id =  localStorage.getItem('mobile')
+    api.get('/prajapatidharmashala/api/account/list/'+id).then(res => {
+        console.log (JSON.stringify(res.data));
+        this.insert_modal(res.data)
     }).catch( e => {
-      //alert(e)
+        alert (e);
+        errors['error'] = e;
     })
   },
-  watch: {
-    first_name(value) {
-      this.first_name = value;
-      this.require_check('first_name', value, 'Name');
-    },
-    last_name(value) {
-      this.last_name = value;
-      this.require_check('last_name', value, 'Surname');
-    },
-    gender(value) {
-      this.gender = value;
-      this.require_check('gender', value, 'Gender');
-    },
-    father(value) {
-      this.father = value;
-      this.require_check('father', value, 'Father');
-    },
-    mobile(value) {
-      this.mobile = value;
-      this.require_check('mobile', value, 'Mobile');
-
-      //mobile number validation
-      var phoneno = /^\d{10}$/;
-      if (value.match(phoneno)) {
-        this.errors['mobile'] = '';
-      } else {
-        this.errors['mobile'] = 'Mobile Number is Invalid';
-      }
-
-      //check if mobile number is already exist
-      if (users[value]) {
-        this.errors['mobile'] = 'यह मोबाइल नंबर पहले से रजिस्टर है '
-
-      }
-    },
-    village(value) {
-      this.village = value;
-      this.require_check('village', value, 'Village');
-    },
-    address(value) {
-      this.address = value;
-      this.require_check('address', value, 'Address');
-    },
-    email (value) {
-      // var mailformat = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
-      // if(value.match(mailformat)) {
-      //   this.errors['email'] = '';
-      // } else {
-      //   this.errors['email'] = 'Invalid Email';
-      // }
-
-      if (email[value]){
-        this.errors['email'] = 'यह ई-मेल पहले से रजिस्टर है '
-      } else {
-        this.errors['email'] = '';
-      }
-    }
-
-  },
-  computed:{
+  computed: {
     isDisabled() {
       if (this.first_name == undefined || this.father == undefined 
       || this.first_name == '' || this.father == ''
       || this.last_name == undefined || this.last_name == ''
       || this.village == undefined || this.village == ''
       || this.mobile == undefined || this.mobile == ''
-      || this.address == undefined || this.address == ''
-      || users[this.mobile]
       || this.errors.length > 0 ) {
         return true
       } else {
         return false
       }
     },
-  },
+  }, 
   methods: {
-    require_check(prop, val, p) {
-      if (!val) {
-        this.errors[prop] = p+' is required';
-      } else {
-        this.errors[prop] = '';
-      }
-    },
-    get_users (res) {
-      res.forEach((item) => {
-        users[item.mobile] = item.mobile;
-        email[item.email] = item.email;
-      })
-      //alert(JSON.stringify(users))
-    },
-    reset_form(){
-      this.first_name = ''
-      this.last_name = ''
-      this.mobile = ''
-      this.alt_mobile = ''
-      this.age = ''
-      this.village = ''
-      this.occupation = ''
-      this.email = ''
-      this.role = ''
-      this.address = ''
-      this.errors.error=''
-      this.errors = []
-    },
-
     async submit() {
       //alert('dwe');
       const user = {
         mobile: this.mobile,
         email: this.email,
-        password: '12345',
         profile: {
           first_name: this.first_name,
           last_name: this.last_name,
@@ -269,45 +191,56 @@ export default {
           age: this.age
         }
       }
-
       //let o =  this.$store.getters.isAuthenticated;
       let tok = localStorage.getItem('token')
-      console.log(JSON.stringify(user) + '----' + tok);
-      await api.post("/prajapatidharmashala/api/account/register", user,
+      //console.log(JSON.stringify(user) + '----' + tok);
+      await api.patch("prajapatidharmashala/api/account/update/"+this.mobile, user,
         {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+tok
         },}
       ).then(res => {
-          alert(JSON.stringify(res.data))
-          this.reset_form();
-          //this.$router.push("/dharmashala/user/list");
+          this.$router.push("/");
       }).catch(err => {
-        //alert(err)
-        //alert(JSON.stringify(err.response.data))
+        alert(err)
         this.showError = true
-        this.errors['error'] = err+JSON.stringify(err.response.data)
+        this.errors['error'] = err
       })
     },
+    showModal(id) {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+      this.$router.push("/");
+    },
+    insert_modal(res) {
+      //alert(res.mobile)
+      this.mobile = res.mobile
+      this.first_name = res.profile.first_name
+      this.last_name = res.profile.last_name
+      this.father = res.profile.father
+      this.alt_mobile = res.profile.alt_mobile
+      this.village = res.profile.village
+      this.age = res.profile.age
+      this.occupation = res.profile.occupation
+      this.address = res.profile.address
+      this.gender = res.profile.gender
+    },
   }
-}
+})
 </script>
-
 <style scoped>
-.header {
-  padding: 60px;
-  text-align: center;
-  background: rgb(99, 110, 117);
-  color: white;
-  font-size: 30px;
+.fdiv {
+  margin: 5px 15px;
+  /* margin: 15px; */
 }
+
 
 .error {
-  color: red;
-}
-
-.frow {
-  padding: 7px;
+  color:white;
+  margin: 2px 40px;
+  background: red;
 }
 </style>

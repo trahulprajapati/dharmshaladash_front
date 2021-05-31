@@ -35,3 +35,5 @@ ref - https://github.com/gabbyprecious/vue-blog/tree/master/src ,
         https://medium.com/django-rest/django-rest-framework-change-password-and-update-profile-1db0c144c0a3
 
 5/30/2021 - git commit , update user is working, 
+
+5/31/2021 -- git commit, User registration ,  user profile , and user name is working fine

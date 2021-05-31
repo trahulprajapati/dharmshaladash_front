@@ -20,11 +20,12 @@
         class="text-center"
         color="light"
       >
-        <strong>अकाउंट </strong>
+        <strong> Welcome {{get_name}} ! </strong>
       </CDropdownHeader>
       <span v-if="isLoggedIn">
         <CDropdownItem>
-          <CIcon name="cil-user" /> <router-link to="/profile">प्रोफाइल  </router-link>
+          <!-- <CIcon name="cil-user" /> <router-link to="/profile">प्रोफाइल  </router-link> -->
+          <CIcon name="cil-user" /> <a @click="getProfile()"> प्रोफाइल  </a>
         </CDropdownItem>
         <CDropdownItem>
           <CIcon name="cil-lock-locked"/> <a @click="logout()"> लॉगआउट </a>
@@ -49,12 +50,19 @@ export default {
       //tkn = this.$store.getters.isAuthenticated
       return this.$store.getters.isAuthenticated;
     },
+    get_name: function() {
+      return localStorage.getItem('name')
+    }
   },
   methods: {
     async logout() {
       await this.$store.dispatch("LogOut");
       this.$router.push("/login");
     },
+    getProfile() {
+      this.$router.push("/profile");
+      //return this.$store.getters.isAuthenticated;
+    }
   },
 }
 </script>

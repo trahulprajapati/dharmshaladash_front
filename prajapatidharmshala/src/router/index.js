@@ -14,6 +14,7 @@ const Widgets = () => import('@/views/widgets/Widgets')
 const Register = () => import('@/views/dharmashala/user/Register')
 const UserList = () => import('@/views/dharmashala/user/List')
 const Login = () => import('@/views/dharmashala/user/Login')
+const Profile = () => import('@/views/dharmashala/user/Profile')
 
 
 Vue.use(Router)
@@ -52,6 +53,11 @@ function configRoutes () {
           path: 'login',
           name: 'Login',
           component: Login
+        },
+        {
+          path: 'profile',
+          name: 'Profile',
+          component: Profile
         },
         {
           path: 'dharmashala',

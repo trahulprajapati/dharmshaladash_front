@@ -334,7 +334,7 @@ export default {
         mobile: this.mobile,
         email: this.email,
         profile: {
-          first_name: this.mobile,
+          first_name: this.first_name,
           last_name: this.last_name,
           village: this.village,
           father: this.father,

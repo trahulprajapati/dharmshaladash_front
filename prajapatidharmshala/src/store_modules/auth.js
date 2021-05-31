@@ -11,26 +11,38 @@ const getters = {
     StateUser: (state) => state.user,
     isAuthenticated: state => !!state.token,
     authStatus: state => state.status,
+    //user: state => state.user
 };
 
 const actions = {
     async LogIn({commit}, user) {
+        let mobile = undefined
         commit('auth_request')
         // await api.post("/prajapatidharmashala/api/account/login", user, {withCredentials: true});
         await api.post("/prajapatidharmashala/api/account/login", user)
           .then(res => {
             const token = res.data.token
-            const user = res.data.mobile
+            mobile = res.data.mobile
             //alert(token)
             localStorage.setItem('token', token)
+            localStorage.setItem('mobile', mobile)
             api.defaults.headers.common['Authorization'] = token
-            commit('auth_success', token, user)
+            commit('auth_success', token, mobile)
             //await commit("setUser", user.mobile);
-          })
+          })  
           .catch(err => {
+            alert(err)
             commit('auth_error')
             localStorage.removeItem('token')
-            reject(err)
+            //reject(err)
+          })
+          // get user
+          await api.get('/prajapatidharmashala/api/account/list/'+mobile).then(res => {
+            let dt = res.data;
+            let name = dt.profile.first_name;
+            localStorage.setItem('name', name)
+          }).catch( e => {
+              alert (e);
           })
         //await commit("setUser", user.get("username"));
         
