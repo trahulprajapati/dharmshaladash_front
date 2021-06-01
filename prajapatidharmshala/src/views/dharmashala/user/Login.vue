@@ -11,7 +11,7 @@
       <!-- body -->
       <template v-slot:body>
           <div class="row  fdiv">
-            <form class="col-6 lform"   @submit.prevent="submit">
+            <form class="col-6 lform" @submit.prevent="submit">
               <img src="../../../../public/img/avatars/loginlogo1.jpeg" class="imgbtn" style="width:180px;height:150px;" >
               <div class="form-group ">
                  <!-- <span class="error" v-if="errors.error"> {{errors.error}}</span> -->

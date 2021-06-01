@@ -37,7 +37,7 @@
                  <img src="../../../../public/img/avatars/edit.jpg" style="width:25px;height:20px;" >
                </button>
               <!-- <a class="icon" href="#"><img src="../../../../public/img/avatars/edit.jpg" style="width:25px;height:20px;" @click="$refs.editModal.openModal()"></a> -->
-              <a href="#"><img src="../../../../public/img/avatars/delete.jpg" style="width:20px;height:20px;"></a>{{row[obj.id]}}
+              <a v-if="isLoggedIn" href="#"><img src="../../../../public/img/avatars/delete.jpg" style="width:20px;height:20px;"></a>{{row[obj.id]}}
             </span>
             <span v-else>{{row[obj.key]}}</span>
           </td>
@@ -51,7 +51,8 @@
         @close="closeModal"
       >
         <template v-slot:header>
-          सदस्य अपडेट
+          <span v-if="isLoggedIn" >सदस्य अपडेट - {{ first_name}} </span>
+          <span v-else> {{ first_name}} {{ last_name}} </span>
         </template>
 
         <template v-slot:body>
@@ -62,21 +63,21 @@
                  <!-- <span class="error" v-if="errors.error"> {{errors.error}}</span> -->
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="first_name" required>नाम *</label>
-                    <input type="text" class="form-control col-sm-9" name="first_name" id="first_name"
-                    v-model="first_name" required/>
+                    <input v-bind:readonly="! isLoggedIn" type="text" class="form-control col-sm-9" name="first_name" id="first_name"
+                    v-model="first_name" required />
                     <span class="error" v-if="errors.first_name"> {{errors.first_name}}</span>
                 </div>
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label" for="last_name">सरनेम *</label>
                     <input type="text" class="form-control col-sm-9" name="last_name" id="last_name"
-                    v-model="last_name" required/>
+                    v-model="last_name" required  v-bind:readonly="! isLoggedIn"/>
                     <span class="error" v-if="errors.last_name"> {{errors.last_name}}</span>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="gender">लिंग *</label>
-                    <select class="form-control col-sm-9" id="gender" v-model="gender" required>
+                    <select class="form-control col-sm-9" id="gender" v-model="gender" required  v-bind:readonly="! isLoggedIn">
                       <option value="MALE">पुरुष</option>
                       <option value="FEMALE">महिला</option>
                       <option value="OTHER">अन्य</option>
@@ -86,7 +87,7 @@
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label" for="father">पिता *</label>
                     <input type="text" class="form-control col-sm-9" name="father" id="father"
-                    v-model="father" required/>
+                    v-model="father" required  v-bind:readonly="! isLoggedIn"/>
                     <span class="error" v-if="errors.father"> {{errors.father}}</span>
                 </div>
               </div>
@@ -94,12 +95,12 @@
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="age">उम्र </label>
                     <input type="text" class="form-control col-sm-9" name="age" id="age"
-                    v-model="age"/>
+                    v-model="age" v-bind:readonly="! isLoggedIn"/>
                 </div>
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label" for="village">गाँव *</label>
                     <input type="text" class="form-control col-sm-9" name="village" id="village"
-                    v-model="village" required/>
+                    v-model="village" required  v-bind:readonly="! isLoggedIn"/>
                     <span class="error" v-if="errors.village"> {{errors.village}}</span>
                 </div>
               </div>
@@ -107,25 +108,25 @@
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="mobile">मोबाइल *</label>
                     <input type="text" class="form-control col-sm-9" name="mobile" id="mobile"
-                    v-model="mobile" readonly required/>
+                    v-model="mobile" readonly required />
                     <span class="error" v-if="errors.mobile"> {{errors.mobile}}</span>
                 </div>
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label" for="alt_mobile">अतिरिक्त  मोबाइल</label>
                     <input type="text" class="form-control col-sm-9" name="alt_mobile" id="alt_mobile"
-                    v-model="alt_mobile"/>
+                    v-model="alt_mobile"  v-bind:readonly="! isLoggedIn"/>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="occupation">व्यवसाय</label>
                     <input type="text" class="form-control col-sm-9" name="occupation" id="occupation"
-                    v-model="occupation"/>
+                    v-model="occupation"  v-bind:readonly="! isLoggedIn"/>
                 </div>
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label" for="email">ई-मेल</label>
                     <input type="text" class="form-control col-sm-9" name="email" id="email"
-                    v-model="email"/>
+                    v-model="email"  v-bind:readonly="! isLoggedIn"/>
                     <span class="error" v-if="errors.email"> {{errors.email}}</span>
                 </div>
               </div>
@@ -133,7 +134,7 @@
                 <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-2 col-form-label"  for="address">पता</label>
                     <textarea type="text" class="form-control col-sm-10" name="address" id="address"
-                    v-model="address"/>
+                    v-model="address"  v-bind:readonly="! isLoggedIn"/>
                 </div>
                  <!-- <div class="form-row form-inline col-sm-5">
                     <label class="col-sm-3 col-form-label"  for="role">पद</label>
@@ -148,7 +149,7 @@
                     </select>
                 </div>   -->
               </div> <br>
-              <div class="form-group row">
+              <div v-if="isLoggedIn" class="form-group row">
                 <div class="form-row form-inline col-sm-5">
                    <button type="submit" :class="['btn btn-primary mb-2 mr-4'] " :disabled="isDisabled">सम्पादित करें</button>
                    <button type="button" class="btn btn-primary mb-2"  @click="closeModal()">बंद करें </button>
@@ -294,7 +295,7 @@ export default {
     showModal(id) {
       //alert(id)
       api.get('/prajapatidharmashala/api/account/list/'+id).then(res => {
-        console.log (JSON.stringify(res.data));
+        //console.log (JSON.stringify(res.data));
         this.insert_modal(res.data)
       }).catch( e => {
         alert (e);

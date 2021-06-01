@@ -50,6 +50,8 @@ const actions = {
     async LogOut({ commit }) {
         let user = null;
         localStorage.removeItem('token')
+        localStorage.removeItem('mobile')
+        localStorage.removeItem('name')
         delete api.defaults.headers.common['Authorization']
         //resolve()
         commit("logout", user);
