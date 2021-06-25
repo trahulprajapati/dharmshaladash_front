@@ -20,7 +20,7 @@ export default [
         items: [
           {
             name: 'डोनेशन लिस्ट',
-            to: '/pages/login'
+            to: '/dharmashala/donation/list'
           },
           {
             name: 'एक्सपेंस लिस्ट',
@@ -44,7 +44,7 @@ export default [
         items: [
           {
             name: 'डोनेशन ऐड',
-            to: '/pages/login'
+            to: '/dharmashala/donation/add'
           },
           {
             name: 'एक्सपेंस ऐड',

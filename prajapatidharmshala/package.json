@@ -19,6 +19,7 @@
     "jquery": "^3.6.0",
     "jw-vue-pagination": "^1.0.3",
     "vue": "^2.6.11",
+    "vue-html-to-paper": "^1.4.2",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.0.0-beta.3"

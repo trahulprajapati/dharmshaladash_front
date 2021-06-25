@@ -37,3 +37,26 @@ ref - https://github.com/gabbyprecious/vue-blog/tree/master/src ,
 5/30/2021 - git commit , update user is working, 
 
 5/31/2021 -- git commit, User registration ,  user profile , and user name is working fine
+
+########################## DONATION ##########################################
+6/12/2021 - 5h 
+            Created donation add page
+6/16/2021 - 4h 
+            getting user id from moble in donation add page,
+            created list formm and pages, list and update design and data generate working
+            next is submit /update functionlity and  history shoe on update modal
+6/17/2021 - 2h
+            created new router for update , now taable can be used as a common for all modules
+            next is to work on update
+6/18/2021 - 4h
+            Update page desgin , data genrating and table donation history generated.
+            next is to get gageent name and save th update, and retrive data from table
+6/19/2021 - 5h
+            Showing the agent name in donation list page, donatio histroy 
+            need to add amount type : check/ check number . cash
+6/23/2021 - 2h
+            Worked on reciept page created recipt number and date
+6/25/2021 - 6h
+            ack.vue Redesigned the header, added image to header, changes font, added table
+            content in ack
+

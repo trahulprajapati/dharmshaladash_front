@@ -16,7 +16,10 @@ const UserList = () => import('@/views/dharmashala/user/List')
 const Login = () => import('@/views/dharmashala/user/Login')
 const Profile = () => import('@/views/dharmashala/user/Profile')
 
-
+// Donation
+const DonationAdd = () => import('@/views/dharmashala/donation/Add')
+const DonationList = () => import('@/views/dharmashala/donation/List')
+const DonationUpdate  = () => import('@/views/dharmashala/donation/Update')
 Vue.use(Router)
 
 export default new Router({
@@ -76,6 +79,31 @@ function configRoutes () {
               path: '/dharmashala/user/list',
               name: 'UserList',
               component: UserList
+            },
+          ]
+        },
+        {
+          path: 'donation',
+          redirect: '/dharmashala/donation',
+          name: 'Dharmashala',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '/dharmashala/donation/add',
+              name: 'Donation Add',
+              component: DonationAdd
+            },
+            {
+              path: '/dharmashala/donation/list',
+              name: 'Donation List',
+              component: DonationList
+            },
+            {
+              path: '/dharmashala/donation/update/:id',
+              name: 'Donation Update',
+              component: DonationUpdate
             }
           ]
         },
