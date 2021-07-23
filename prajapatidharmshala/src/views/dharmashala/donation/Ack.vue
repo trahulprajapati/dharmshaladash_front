@@ -27,22 +27,22 @@
               <div class="date">
               <div class="row justify-content-end">
                 <label class="col-md-6 col-lg-2 col-xl-4">
-                  रसीद क्र. :  {{ reciept }}
+                  रसीद क्र. :  {{ theData.id }}
                 </label>
               </div>
               <div class="row justify-content-end">
                 <label class="col-md-6 col-lg-2 col-xl-4">
-                  दिनाँक & समय : {{ date }}
+                  दिनाँक & समय : {{ theData.date }}
                 </label>
               </div>
               </div>
               <!-- othe filed -->
               <div class="row hdrline"> 
                   <div class="col-sm-8">
-                      <label class="lbl">दानदाता : </label> <span> {{ name }} s/o {{ name }} </span>
+                      <label class="lbl">दानदाता : </label> <span> {{ theData.name }} s/o {{ theData.father }} </span>
                   </div>
                   <div class="col-sm-3">
-                      <label class="lbl">गाँव :</label> <span> {{ name }} </span>
+                      <label class="lbl">गाँव :</label> <span> {{ theData.village }} </span>
                   </div>
               </div>
               <div class="row contnt"> 
@@ -61,11 +61,11 @@
                       <th> अन्य </th>
                     </tr>
                     <tr> 
-                      <td> {{ donation_type }} </td>
+                      <td> {{ theData.donation_type }} </td>
                       <td> {{ amount_type }} </td>
-                      <td> {{ amount }} </td>
-                      <td> {{ due }} </td>
-                      <td> {{ other }} </td>
+                      <td> {{ theData.amount }} </td>
+                      <td> {{ theData.due }} </td>
+                      <td> {{ theData.other }} </td>
                     </tr>
                   </table>
               </div>
@@ -99,22 +99,15 @@ import Table from '../base/Table.vue'
     name: 'Ack',
     props: {
       theData: {
-        type: Array,
+        type: Object,
+      },
+      agent : { 
+        type:String,
       }
     },
     data() {
       return {
         error: [],
-        success: null,
-        reciept: 'sdffdsfdf',
-        date: '2020/22/22',
-        name: 'tets',
-        father: 'tettd',
-        donation_type: 'amount',
-        due: '111',
-        other: 'Sariya',
-        amount: '1000', 
-        agent: 'Rahul',
         amount_type: 'cash'
       }
     },

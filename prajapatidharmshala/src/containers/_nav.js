@@ -24,7 +24,7 @@ export default [
           },
           {
             name: 'एक्सपेंस लिस्ट',
-            to: '/notifications/alerts'
+            to: '/dharmashala/expense/list'
           },
           {
             name: 'इवेंट लिस्ट',
@@ -48,7 +48,7 @@ export default [
           },
           {
             name: 'एक्सपेंस ऐड',
-            to: '/pages/login'
+            to: '/dharmashala/expense/add'
           },
           {
             name: 'यूजर ऐड',

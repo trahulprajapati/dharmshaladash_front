@@ -1,7 +1,10 @@
 <template>
 <CRow>
     <div class="container">
-       <Ack v-if="! ack" >
+        <Ack v-if="ack"
+        :theData="ackdata"
+        :agent = agent_name
+        >
         </Ack>
         <div v-else class="col-sm-10 bg-white text-dark border">
           <div class="row frow header border">
@@ -115,7 +118,8 @@ export default {
       amounttext: true,
       othertext: false,
       ackdata: null,
-      ack: false
+      ack: false,
+      agent_name: null
     }
   },
   created() {
@@ -124,6 +128,7 @@ export default {
       this.$router.push("/dashboard");
     }
     let mob = localStorage.getItem('mobile');
+    this.agent_name = localStorage.getItem('name');
     //get id from mobile
     api.get('/prajapatidharmashala/api/account/get_uid?mobile='+mob).then(res => {
       this.agent_id = res.data.id;
@@ -241,8 +246,12 @@ export default {
           },}
         ).then(res => {
             alert(JSON.stringify(res.data))
-            this.ackdata = res.data.data;
-            this.ack = true;
+            if (res.data.success) {
+              this.ackdata = res.data.data;
+              this.ack = true;
+            } else {
+              this.errors['error'] = "Something went wrong"
+            }
             this.reset_form();
             //this.$router.push("/dharmashala/user/list");
         }).catch(err => {

@@ -41,7 +41,7 @@ ref - https://github.com/gabbyprecious/vue-blog/tree/master/src ,
 ########################## DONATION ##########################################
 6/12/2021 - 5h 
             Created donation add page
-6/16/2021 - 4h 
+6/16/2021 - 4h
             getting user id from moble in donation add page,
             created list formm and pages, list and update design and data generate working
             next is submit /update functionlity and  history shoe on update modal
@@ -58,5 +58,15 @@ ref - https://github.com/gabbyprecious/vue-blog/tree/master/src ,
             Worked on reciept page created recipt number and date
 6/25/2021 - 6h
             ack.vue Redesigned the header, added image to header, changes font, added table
-            content in ack
-
+            content in ack 
+            git commit
+7/04/2021 - 4h
+            Design expense add done
+7/07/2021 - 3h
+            validatio for add expense done
+7/14/2021 - 6h
+            completed add list / update pages for expense
+7/18/2021 - 5h
+            Worked on expense update
+7/23/2021 - 5h
+            Update api worked fine, git commit 

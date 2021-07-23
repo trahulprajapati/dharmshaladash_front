@@ -20,6 +20,12 @@ const Profile = () => import('@/views/dharmashala/user/Profile')
 const DonationAdd = () => import('@/views/dharmashala/donation/Add')
 const DonationList = () => import('@/views/dharmashala/donation/List')
 const DonationUpdate  = () => import('@/views/dharmashala/donation/Update')
+
+// Expense
+const ExpenseAdd = () => import('@/views/dharmashala/expense/Add')
+const ExpenseList = () => import('@/views/dharmashala/expense/List')
+const ExpenseUpdate  = () => import('@/views/dharmashala/expense/Update')
+
 Vue.use(Router)
 
 export default new Router({
@@ -83,6 +89,31 @@ function configRoutes () {
           ]
         },
         {
+          path: 'expense',
+          redirect: '/dharmashala/expense',
+          name: 'Dharmashala',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '/dharmashala/expense/add',
+              name: 'Expense Add',
+              component: ExpenseAdd
+            },
+            {
+              path: '/dharmashala/expense/list',
+              name: 'Expense List',
+              component: ExpenseList
+            },
+            {
+              path: '/dharmashala/expense/get/:id',
+              name: 'Expense Update',
+              component: ExpenseUpdate
+            }
+          ]
+        },
+        {
           path: 'donation',
           redirect: '/dharmashala/donation',
           name: 'Dharmashala',
@@ -101,7 +132,7 @@ function configRoutes () {
               component: DonationList
             },
             {
-              path: '/dharmashala/donation/update/:id',
+              path: '/dharmashala/donation/get/:id',
               name: 'Donation Update',
               component: DonationUpdate
             }

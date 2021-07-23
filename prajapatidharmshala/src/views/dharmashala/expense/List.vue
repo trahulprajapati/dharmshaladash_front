@@ -3,16 +3,16 @@
       <div class="container">
           <div class="col-sm-12 bg-white text-dark border">
             <div class="row frow header border">
-                <h5><strong class="col-sm-12">  डोनेशन सूची </strong></h5>
+                <h5><strong class="col-sm-12">  एक्सपेंस सूची </strong></h5>
             </div>
             <div class="row frow d-flex justify-content-center">
               <span class="error" v-if="errors"> {{errors.error}}</span>
               <DTable
-                    v-if="donation"
-                    :theData="donation"
+                    v-if="expense"
+                    :theData="expense"
                     :config="config"
                     :updateapi="api"
-                    :style="{height: '600px'}"
+                    :style="{height: '700px'}"
                 />
             </div>
           </div>
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      donation: [],
+      expense: [],
       errors: [],
       config: [],
       api: null
@@ -41,8 +41,8 @@ export default {
   },
   created() {
     //assign api its value
-    this.api = '/dharmashala/donation/get/';
-    api.get('/prajapatidharmashala/api/donation/list').then(res => {
+    this.api = '/dharmashala/expense/get/';
+    api.get('/prajapatidharmashala/api/expense/list').then(res => {
       this.create_table(res.data)
     }).catch( e => {
       alert (e);
@@ -58,14 +58,15 @@ export default {
         let fname = item.agent_id.profile.first_name;
         let lname  = item.agent_id.profile.last_name;
         item.agent_name = fname+' '+lname
+        item.exps_name = 'NULL'
         item.agent_id = item.agent_id.id;
       })
-      this.donation = val;
+      this.expense = val;
       this.config = [
-        {key: 'name', title: 'नाम'},
-        {key: 'village', title: 'गाँव'},
+        {key: 'exps_name', title: 'खर्च नाम'},
+        {key: 'biller_name', title: 'बिलर'},
         {key: 'amount', title: 'राशि'},
-        {key: 'date', title: 'तारीख'},
+        {key: 'exp_date', title: 'तारीख'},
         {key: 'agent_name', title: 'एजेंट'},
         {key: 'id', title: 'एक्शन'}
       ];
