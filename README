@@ -5,3 +5,68 @@ Git repo - https://github.com/trahulprajapati/dharmshaladash_front.git
 Prerequisites
 System Requiement - 4GB RAM, 500 HDD
 Software Requiement - Node js, npm install -g @vue/cli, npm run serve, npm install --save axios
+
+
+
+
+############################################ changelog #####################################################
+5/13/2021 -- list search, net prev done, next is to work on update user by modal, click on edit/delete icon and 
+modal shouold populated adn update the info
+
+5/16/2021 - Modal design is completed, created Modal.vue for editmodal now. Next is to create update form for 
+edit and delete
+
+5/25/2021 -- update user form modal design done, next to populate api data in update form
+
+5/27/2021 -- update form generating api data, next to make register and update form fullly functional 
+working , need to be work on can_submit, befor that need to be working on signup for token
+
+5/28/2021 -- rNd on login/logout. use this to implement login logout, next auth implementation.
+ref - https://github.com/gabbyprecious/vue-blog/tree/master/src , 
+    https://www.smashingmagazine.com/2020/10/authentication-in-vue-js/
+    login page design completed and state, mutation and auth module created to handle the login 
+    dropdown and login page. next is to implement login api for the same, 
+    action, state, motation, and getters created for login api in auth module
+
+5/29/2021 -- git commit
+        login is working with positive and nagitvie testing
+        in middle of update user , api call written but getting error , checking on postmanster
+        need to modiify api -
+        https://medium.com/django-rest/django-rest-framework-change-password-and-update-profile-1db0c144c0a3
+
+5/30/2021 - git commit , update user is working, 
+
+5/31/2021 -- git commit, User registration ,  user profile , and user name is working fine
+
+########################## DONATION ##########################################
+6/12/2021 - 5h 
+            Created donation add page
+6/16/2021 - 4h
+            getting user id from moble in donation add page,
+            created list formm and pages, list and update design and data generate working
+            next is submit /update functionlity and  history shoe on update modal
+6/17/2021 - 2h
+            created new router for update , now taable can be used as a common for all modules
+            next is to work on update
+6/18/2021 - 4h
+            Update page desgin , data genrating and table donation history generated.
+            next is to get gageent name and save th update, and retrive data from table
+6/19/2021 - 5h
+            Showing the agent name in donation list page, donatio histroy 
+            need to add amount type : check/ check number . cash
+6/23/2021 - 2h
+            Worked on reciept page created recipt number and date
+6/25/2021 - 6h
+            ack.vue Redesigned the header, added image to header, changes font, added table
+            content in ack 
+            git commit
+7/04/2021 - 4h
+            Design expense add done
+7/07/2021 - 3h
+            validatio for add expense done
+7/14/2021 - 6h
+            completed add list / update pages for expense
+7/18/2021 - 5h
+            Worked on expense update
+7/23/2021 - 5h
+            Update api worked fine, git commit 

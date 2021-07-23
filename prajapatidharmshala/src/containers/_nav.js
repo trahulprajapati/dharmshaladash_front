@@ -20,15 +20,19 @@ export default [
         items: [
           {
             name: 'डोनेशन लिस्ट',
-            to: '/pages/login'
+            to: '/dharmashala/donation/list'
           },
           {
             name: 'एक्सपेंस लिस्ट',
-            to: '/notifications/alerts'
+            to: '/dharmashala/expense/list'
           },
           {
             name: 'इवेंट लिस्ट',
-            to: '/notifications/modals'
+            to: '/base/formss'
+          },
+          {
+            name: 'यूजर लिस्ट',
+            to: '/dharmashala/user/list'
           }
         ]
       },
@@ -40,15 +44,15 @@ export default [
         items: [
           {
             name: 'डोनेशन ऐड',
-            to: '/pages/login'
+            to: '/dharmashala/donation/add'
           },
           {
             name: 'एक्सपेंस ऐड',
-            to: '/pages/login'
+            to: '/dharmashala/expense/add'
           },
           {
             name: 'यूजर ऐड',
-            to: '/dharmashala/register'
+            to: '/dharmashala/user/register'
           },
         ]
       },

@@ -3995,6 +3995,21 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
+datatables.net-dt@^1.10.24:
+  version "1.10.24"
+  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-1.10.24.tgz#64397d6842052afab9dedf9ba160849954fb4cc3"
+  integrity sha512-O7c/Fhqz9hZG8LkXLr9k3M2rZPFjqY6tylOnFl3UaTZfBp5TeCc1AXZbFmv3Y7aNkcNS2UVJRiYAk7bkQhxR+w==
+  dependencies:
+    datatables.net "1.10.24"
+    jquery ">=1.7"
+
+datatables.net@1.10.24:
+  version "1.10.24"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.24.tgz#370e02f1e201de8334fdc92e7515c1624191573c"
+  integrity sha512-CwXixvOdinvBCLXvcTloDinWiEM7Geaz+GwyjPrZL+MXIGPcLv4Op1bbWn8ErsI1JWMIWC8Cuf1rnDU2RrFV5w==
+  dependencies:
+    jquery ">=1.7"
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -6935,6 +6950,11 @@ jest@^24.9.0:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
 
+jquery@>=1.7, jquery@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
+
 js-beautify@^1.6.12, js-beautify@^1.6.14:
   version "1.13.5"
   resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.13.5.tgz#a08a97890cae55daf1d758d3f6577bd4a64d7014"
@@ -7133,6 +7153,18 @@ jsprim@^1.2.2:
     extsprintf "1.3.0"
     json-schema "0.2.3"
     verror "1.10.0"
+
+jw-paginate@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/jw-paginate/-/jw-paginate-1.0.4.tgz#c6e7dbb4a6e9d62e501c7f9562a3a2a33d77c9b9"
+  integrity sha512-W0bv782exgCoynUL/egbRpaYwf/r6T6e02H870H5u3hfSgEYrxgz5POwmFF5aApS6iPi6yhZ0VF8IbafNFsntA==
+
+jw-vue-pagination@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/jw-vue-pagination/-/jw-vue-pagination-1.0.3.tgz#7996d58222f9398cba8a498cf17733fc2c918eaf"
+  integrity sha512-85BV/5maL87mykKH8GBGRsi23p7yVsA4Y8dakCMQNbt/7wOJEqDtOySq5xm1xaudVO4UOp+0lbzUiTrHvXfr+A==
+  dependencies:
+    jw-paginate "^1.0.4"
 
 killable@^1.0.1:
   version "1.0.1"
@@ -9959,6 +9991,11 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
+shvl@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/shvl/-/shvl-2.0.3.tgz#eb4bd37644f5684bba1fc52c3010c96fb5e6afd1"
+  integrity sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw==
+
 sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
@@ -11142,6 +11179,11 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
+vue-html-to-paper@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/vue-html-to-paper/-/vue-html-to-paper-1.4.2.tgz#3d538e79857158a46cbbb5679031cab159a45c21"
+  integrity sha512-2HJNihMaG7R8f9ZcHtCtPSAbnN130dfxWZRfFHF9rvD+2plftD36w/EOzdw8rbADCdfXa0PsoNVXe7Fw8VOmDQ==
+
 vue-jest@^3.0.5:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/vue-jest/-/vue-jest-3.0.7.tgz#a6d29758a5cb4d750f5d1242212be39be4296a33"
@@ -11209,6 +11251,14 @@ vue@^2.6.11, vue@^2.6.12, vue@~2.6.11:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
+
+vuex-persistedstate@^4.0.0-beta.3:
+  version "4.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/vuex-persistedstate/-/vuex-persistedstate-4.0.0-beta.3.tgz#89dd712de72d28e85cc95467d066002c1405f277"
+  integrity sha512-T4IRD27qoUWh+8qr6T6zVp15xO7x/nPgnU13OD0C2uUwA7U9PhGozrj6lvVmMYDyRgc36J0msMXn3GvwHjkIhA==
+  dependencies:
+    deepmerge "^4.2.2"
+    shvl "^2.0.2"
 
 vuex@^3.6.2:
   version "3.6.2"

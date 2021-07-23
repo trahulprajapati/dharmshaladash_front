@@ -15,9 +15,14 @@
     "@coreui/vue-chartjs": "^1.0.6",
     "axios": "^0.21.1",
     "core-js": "^3.10.0",
+    "datatables.net-dt": "^1.10.24",
+    "jquery": "^3.6.0",
+    "jw-vue-pagination": "^1.0.3",
     "vue": "^2.6.11",
+    "vue-html-to-paper": "^1.4.2",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
