@@ -1,7 +1,7 @@
 <template>
 <CRow>
     <div class="container">
-        <div class="col-sm-10 bg-white text-dark border">
+        <div class="col-sm-12 bg-white text-dark border">
           <div class="row frow header border">
               <h5><strong class="col-sm-9"> सदस्य जोड़ें </strong></h5>
           </div>

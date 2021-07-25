@@ -301,7 +301,8 @@ export default {
       this.remark= undefined;// res.remark;
       this.rate= res.rate;
       this.quantity= res.quantity;
-      this.expense_type = res.expense_type;
+      this.expense_type = res.exp_type;
+      this.expense_name = res.exp_name
 
       if (res.expense_type == 'contract') {
         this.c_father = res.contract.c_father;
@@ -368,8 +369,8 @@ export default {
               'Authorization': 'Bearer '+tok
           },}
         ).then(res => {
-          alert(JSON.stringify(res.data))
-          //this.$router.go();
+          //alert(JSON.stringify(res.data))
+          this.$router.go();
         }).catch(err => {
           alert(err)
           this.showError = true

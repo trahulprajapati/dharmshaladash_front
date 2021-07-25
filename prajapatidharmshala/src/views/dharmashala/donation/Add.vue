@@ -6,22 +6,35 @@
         :agent = agent_name
         >
         </Ack>
-        <div v-else class="col-sm-10 bg-white text-dark border">
+        <div v-else class="col-sm-12 bg-white text-dark border">
           <div class="row frow header border">
               <h5><strong class="col-sm-9"> डोनेशन जोड़ें </strong></h5>
           </div>
           <br>
-          <div class="row frow d-flex justify-content-center">
+          <div class="row frowc d-flex justify-content-center">
             <form class="col-12" @submit.prevent="submit">
               <span class="error" v-if="showError">  {{errors.error}}</span>
+              <div style="border-bottom: 2px solid #bbb;">
+                <div class="form-group row">
+                  <div class="form-row form-inline col-sm-11">
+                      <label class="col-sm-2 col-form-label" for="father"> <b> डोनेशन प्रकार * </b></label>
+                      <select class="form-control col-sm-10" id="d_type" v-model="d_type">
+                        <option value="CONST">निर्माण </option>
+                        <option value="EVENT">प्रोग्राम </option>
+                        <option value="OTHER">अन्य </option>
+                      </select>
+                  </div>
+                </div>
+                <br>
+              </div> <br>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-2 col-form-label"  for="name" required>नाम *</label>
+                    <label class="col-sm-3 col-form-label"  for="name" required>नाम *</label>
                     <input type="text" class="form-control col-sm-9" name="name" id="name"
                     v-model="name" required/>
                     <span class="error" v-if="errors.name"> {{errors.name}}</span>
                 </div>
-                <div class="form-row form-inline col-sm-5">
+                <div class="form-row form-inline col-sm-6">
                     <label class="col-sm-3 col-form-label" for="father">पिता *</label>
                     <input type="text" class="form-control col-sm-9" name="father" id="father"
                     v-model="father" required/>
@@ -30,12 +43,12 @@
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-2 col-form-label" for="village">गाँव *</label>
+                    <label class="col-sm-3 col-form-label" for="village">गाँव *</label>
                     <input type="text" class="form-control col-sm-9" name="village" id="village"
                     v-model="village" required/>
                     <span class="error" v-if="errors.village"> {{errors.village}}</span>
                 </div>
-                <div class="form-row form-inline col-sm-5">
+                <div class="form-row form-inline col-sm-6">
                     <label class="col-sm-3 col-form-label"  for="mobile">मोबाइल *</label>
                     <input type="text" class="form-control col-sm-9" name="mobile" id="mobile"
                     v-model="mobile" required/>
@@ -44,19 +57,19 @@
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-2 col-form-label"  for="donation_type">डोनेशन प्रकार </label>
+                    <label class="col-sm-3 col-form-label"  for="donation_type">डोनेशन प्रकार </label>
                     <select class="form-control col-sm-9" id="donation_type" v-model="donation_type">
                       <option value="AMOUNT">राशि </option>
                       <option value="OTHER">अन्य </option>
                     </select>
                 </div>
-                <div v-if="amounttext" class="form-row form-inline col-sm-5">
+                <div v-if="amounttext" class="form-row form-inline col-sm-6">
                     <label class="col-sm-3 col-form-label" for="amount">राशि </label>
                     <input type="text" class="form-control col-sm-9" name="amount" id="amount"
                     v-model="amount"/>
                     <span class="error" v-if="errors.amount"> {{errors.amount}}</span>
                 </div>
-                <div v-else class="form-row form-inline col-sm-5">
+                <div v-else class="form-row form-inline col-sm-6">
                     <label class="col-sm-3 col-form-label" for="other">अन्य</label>
                     <input type="text" class="form-control col-sm-9" name="other" id="other"
                     v-model="other"/>
@@ -64,17 +77,27 @@
               </div>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-2 col-form-label"  for="due">बकाया </label>
+                    <label class="col-sm-3 col-form-label"  for="due">बकाया </label>
                     <input type="text" class="form-control col-sm-9" name="due" id="due"
                     v-model="due"/>
                     <span class="error" v-if="errors.due"> {{errors.due}}</span>
                 </div>
-                <div class="form-row form-inline col-sm-5">
+                <div class="form-row form-inline col-sm-6">
                     <label class="col-sm-3 col-form-label" for="remark">टिप्पणी</label>
                     <textarea type="text" class="form-control col-sm-9" name="remark" id="remark"
                     v-model="remark"/>
                     <!-- <input type="text" class="form-control col-sm-9" name="remark" id="remark"
                     v-model="remark"/> -->
+                </div>
+              </div>
+              <div class="form-group row" v-if="d_type == 'EVENT'">
+                <div class="form-row form-inline col-sm-5">
+                    <label class="col-sm-3 col-form-label"  for="event_type">प्रोग्राम प्रकार </label>
+                    <select class="form-control col-sm-9" id="event_type" v-model="event_type">
+                      <option value="party">पार्टी </option>
+                      <option value="mrg">शादी  </option>
+                      <option value="other">अन्य </option>
+                    </select>
                 </div>
               </div>
               <div class="form-group row">
@@ -115,6 +138,8 @@ export default {
       other: 'NA',
       remark: null,
       due: 0,
+      d_type: null,
+      event_type: null,
       amounttext: true,
       othertext: false,
       ackdata: null,
@@ -193,6 +218,7 @@ export default {
       if (this.name == undefined || this.name == ''
       || this.father == undefined || this.father == ''
       || this.village == undefined || this.village == ''
+      || this.d_type == undefined || this.d_type == ''
       || this.errors.length > 0 ) {
         return true
       } else {
@@ -217,6 +243,8 @@ export default {
       this.due=0
       this.other = ''
       this.errors.error=''
+      this.d_type=''
+      this.event_type=''
       this.errors = []
     },
     async submit() {
@@ -232,7 +260,9 @@ export default {
           remark: this.remark,
           due: this.due,
           other: this.other,
-          donation_type: this.donation_type
+          donation_type: this.donation_type,
+          d_type: this.d_type,
+          event_type: this.event_type
         }
         //alert(JSON.stringify(param))
         //let o =  this.$store.getters.isAuthenticated;
@@ -245,7 +275,7 @@ export default {
               'Authorization': 'Bearer '+tok
           },}
         ).then(res => {
-            alert(JSON.stringify(res.data))
+            //alert(JSON.stringify(res.data))
             if (res.data.success) {
               this.ackdata = res.data.data;
               this.ack = true;
@@ -283,5 +313,12 @@ export default {
 
 .frow {
   padding: 7px;
+}
+
+.frowc {
+  /* padding: 7px; */
+  padding-left: 80px;
+  padding-right: 60px;
+  padding-top: 7px;
 }
 </style>

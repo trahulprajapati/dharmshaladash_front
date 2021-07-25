@@ -26,6 +26,9 @@ const ExpenseAdd = () => import('@/views/dharmashala/expense/Add')
 const ExpenseList = () => import('@/views/dharmashala/expense/List')
 const ExpenseUpdate  = () => import('@/views/dharmashala/expense/Update')
 
+// Report
+const Report  = () => import('@/views/dharmashala/base/Report')
+
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +60,11 @@ function configRoutes () {
           path: 'widgets',
           name: 'Widgets',
           component: Widgets
+        },
+        {
+          path: 'reports',
+          name: 'Report',
+          component: Report
         },
         {
           path: 'login',

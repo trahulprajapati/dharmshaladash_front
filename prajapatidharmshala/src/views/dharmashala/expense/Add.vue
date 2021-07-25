@@ -29,10 +29,10 @@
               </div> <br>
               <div class="form-group row">
                 <div class="form-row form-inline col-sm-5">
-                    <label class="col-sm-3 col-form-label"  for="expense_name" required> एक्सपेंस नाम</label>
-                    <input type="text" class="form-control col-sm-9" name="expense_name" id="expense_name"
-                    v-model="expense_name" required/>
-                    <span class="error" v-if="errors.expense_name"> {{errors.expense_name}}</span>
+                    <label class="col-sm-3 col-form-label"  for="exp_name" required> एक्सपेंस नाम</label>
+                    <input type="text" class="form-control col-sm-9" name="exp_name" id="exp_name"
+                    v-model="exp_name" required/>
+                    <span class="error" v-if="errors.exp_name"> {{errors.exp_name}}</span>
                 </div>
                 <div class="form-row form-inline col-sm-6">
                     <label class="col-sm-3 col-form-label" for="biller_name">बिलर *</label>
@@ -219,7 +219,7 @@ export default {
       quantity: null,
       expense_type: null,
       bill_photo: null,
-      expense_name: null,
+      exp_name: undefined
       //agent_name: null
     }
   },
@@ -273,6 +273,7 @@ export default {
     isDisabled() {
       if (this.biller_name == undefined || this.biller_name == ''
       || this.quantity == undefined || this.quantity == ''
+      || this.exp_name == undefined || this.exp_name == ''
       || this.expense_type == undefined || this.expense_type == ''
       || this.rate == undefined || this.rate == ''
       || this.amount == undefined || this.amount == ''
@@ -317,7 +318,7 @@ export default {
       this.remark= ''
       this.rate= ''
       this.quantity= ''
-      this.expense_name=''
+      this.exp_name=''
       this.errors = []
     },
 
@@ -332,7 +333,9 @@ export default {
           due: this.due,
           remark: this.remark,
           rate: this.rate,
-          quantity: this.quantity
+          quantity: this.quantity,
+          exp_type: this.expense_type,
+          exp_name: this.exp_name
         }
         // if it is contract
         if (this.expense_type == 'contract') {
@@ -358,6 +361,7 @@ export default {
         }
         //let o $$$$=  this.$store.getters.isAuthenticated;
         let tok = localStorage.getItem('token')
+        //alert(JSON.stringify(param))
         await api.post("/prajapatidharmashala/api/expense/add", param,
           {
           headers: {
@@ -366,6 +370,7 @@ export default {
           },}
         ).then(res => {
             if (res.data.success) {
+              //alert(JSON.stringify(res.data))
               let id = res.data.data.id;
               this.$router.push("/dharmashala/expense/get/"+id);
               //this.ackdata = res.data.data;

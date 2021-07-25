@@ -228,7 +228,7 @@ export default {
             'Authorization': 'Bearer '+tok
         },}
       ).then(res => {
-        alert(JSON.stringify(res.data))
+        //alert(JSON.stringify(res.data))
 
         this.$router.go();
       }).catch(err => {

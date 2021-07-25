@@ -59,7 +59,7 @@ export default [
       {
         _name: 'CSidebarNavItem',
         name: 'रिपोर्ट',
-        to: '/charts',
+        to: '/reports',
         icon: 'cil-star',
       },
     ]
